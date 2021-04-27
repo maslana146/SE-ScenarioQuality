@@ -3,13 +3,7 @@ language: Java
  notifications:
   email:
     recipients:
-
-
-
-      - maslana146@gmail.com 
-    
-      
-       
+      - maslana146@gmail.com       
     on_success: never
 
     on_failure: always
