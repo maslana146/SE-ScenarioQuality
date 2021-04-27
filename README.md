@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/maslana146/SE-ScenarioQuality.svg?token=1yYaLppcL54Ax5jwsX1z&branch=main)](https://travis-ci.com/maslana146/SE-ScenarioQuality)
 # SE-ScenarioQuality
 
 ### Description
