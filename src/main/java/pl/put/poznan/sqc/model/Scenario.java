@@ -1,11 +1,17 @@
 package pl.put.poznan.sqc.model;
 
+import pl.put.poznan.sqc.logic.analysis.ScenarioVisitor;
+
 import java.util.ArrayList;
 
 public class Scenario {
     private Header header;
     private ArrayList<Step> steps;
 
+    public void accept(ScenarioVisitor v) {
+        v.visitScenario(this);
+    }
+    
     public Header getHeader() {
         return header;
     }
