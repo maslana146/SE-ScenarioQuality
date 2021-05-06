@@ -30,4 +30,13 @@ public class Header {
     public void setSystemActor(String systemActor) {
         this.systemActor = systemActor;
     }
+
+    @Override
+    public String toString() {
+        return "Header{" +
+                "title='" + title + '\'' +
+                ", actors=" + actors +
+                ", systemActor='" + systemActor + '\'' +
+                '}';
+    }
 }
