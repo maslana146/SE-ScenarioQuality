@@ -27,4 +27,12 @@ public class Scenario {
     public void setSteps(ArrayList<Step> steps) {
         this.steps = steps;
     }
+
+    @Override
+    public String toString() {
+        return "Scenario{" +
+                "header=" + header +
+                ", steps=" + steps +
+                '}';
+    }
 }

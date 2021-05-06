@@ -21,4 +21,12 @@ public class Step {
     public void setSteps(ArrayList<Step> steps) {
         this.steps = steps;
     }
+
+    @Override
+    public String toString() {
+        return "Step{" +
+                "action='" + action + '\'' +
+                ", steps=" + steps +
+                '}';
+    }
 }
