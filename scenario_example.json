@@ -8,47 +8,47 @@
   },
   "steps": [
     {
-      "action": "1Librarian selects options to add a new book item"
+      "action": "Librarian selects options to add a new book item"
     },
     {
-      "action": "2A form is displayed"
+      "action": "A form is displayed"
     },
     {
-      "action": "3Librarian provides the details of the book"
+      "action": "Librarian provides the details of the book"
     },
     {
-      "action": "4IF: Librarian wishes to add copies of the book",
+      "action": "IF: Librarian wishes to add copies of the book",
       "steps": [
         {
-          "action": "4.1Librarian chooses to define instances"
+          "action": "Librarian chooses to define instances"
         },
         {
-          "action": "4.2System presents defined instances"
+          "action": "System presents defined instances"
         },
         {
-          "action": "4.3FOR EACH: instance:",
+          "action": "FOR EACH: instance:",
           "steps": [
             {
-              "action": "4.3.1Librarian chooses to add an instance"
+              "action": "Librarian chooses to add an instance"
             },
             {
-              "action": "4.3.2System prompts to enter the instance details"
+              "action": "System prompts to enter the instance details"
             },
             {
-              "action": "4.3.3Librarian enters the instance details and confirms them"
+              "action": "Librarian enters the instance details and confirms them"
             },
             {
-              "action": "4.3.4System informs about the correct addition of an instance and presents the updated list of instances"
+              "action": "System informs about the correct addition of an instance and presents the updated list of instances"
             }
           ]
         }
       ]
     },
     {
-      "action": "5Librarian confirms book addition"
+      "action": "Librarian confirms book addition"
     },
     {
-      "action": "6System informs about the correct addition of the book"
+      "action": "System informs about the correct addition of the book"
     }
   ]
 }

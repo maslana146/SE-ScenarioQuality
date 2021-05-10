@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import pl.put.poznan.sqc.logic.analysis.KeywordsCounter;
 import pl.put.poznan.sqc.model.Scenario;
 import pl.put.poznan.sqc.model.Step;
 
@@ -29,6 +30,10 @@ public class ScenarioQualityCheckerApplication {
 //                }
 //            }
 //        }
+
+        //Keyword testing
+//        KeywordsCounter keywordsCounter = new KeywordsCounter();
+//        keywordsCounter.visitScenario(scenario);
 
 //        SpringApplication.run(ScenarioQualityCheckerApplication.class, args);
     }
