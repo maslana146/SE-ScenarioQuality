@@ -15,11 +15,18 @@ public class ScenarioQualityCheckerController {
 
     private static final Logger logger = LoggerFactory.getLogger(ScenarioQualityCheckerController.class);
 
-    @PostMapping(path="count")
+    @PostMapping(path="steps")
     public Integer stepsCounterController(@RequestBody Scenario scenario) {
         StepsCounter stepsCounter = new StepsCounter();
         return stepsCounter.visitScenario(scenario);
     }
+
+    @PostMapping(path="keywords")
+    public Integer keywordsCounterController(@RequestBody Scenario scenario) {
+        KeywordsCounter keywordsCounter = new KeywordsCounter();
+        return keywordsCounter.visitScenario(scenario);
+    }
+
 
 //REST controllers example
 /*
