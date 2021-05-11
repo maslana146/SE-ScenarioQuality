@@ -17,10 +17,11 @@ import java.io.IOException;
 public class ScenarioQualityCheckerApplication {
 
     public static void main(String[] args) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        Scenario scenario = mapper.readValue(new File("scenario_example.json"),Scenario.class);
 
+// Na razie zostawiam, ale NIE UŻYWAĆ, @RequestBody w Controlerze sam parsuje Jsona
+//        ObjectMapper mapper = new ObjectMapper();
+//        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//        Scenario scenario = mapper.readValue(new File("scenario_example.json"),Scenario.class);
 //Test czy wszystko działa i działa ZAAAJEBISCIE!
 //        for (Step step:scenario.getSteps()){
 //            System.out.println(step);
@@ -31,10 +32,8 @@ public class ScenarioQualityCheckerApplication {
 //            }
 //        }
 
-        //Keyword testing
-//        KeywordsCounter keywordsCounter = new KeywordsCounter();
-//        keywordsCounter.visitScenario(scenario);
 
-//        SpringApplication.run(ScenarioQualityCheckerApplication.class, args);
+        SpringApplication.run(ScenarioQualityCheckerApplication.class, args);
+
     }
 }
