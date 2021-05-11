@@ -2,9 +2,10 @@ package pl.put.poznan.sqc.logic.analysis;
 
 import pl.put.poznan.sqc.model.Scenario;
 
-public class KeywordsCounter implements ScenarioVisitor {
+public class KeywordsCounter implements ScenarioVisitor<Integer> {
     @Override
-    public void visitScenario(Scenario scenario) {
-
+    public Integer
+    visitScenario(Scenario scenario) {
+        return 5;
     }
 }
