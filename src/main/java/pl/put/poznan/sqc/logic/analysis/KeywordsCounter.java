@@ -38,11 +38,7 @@ public class KeywordsCounter implements ScenarioVisitor {
 
     private Boolean checkStep(Step step){
         String firstWord = step.getAction().split(" ", 2)[0];
-        if(firstWord.equals(keyword)){
-            return true;
-        }else{
-            return false;
-        }
+        return firstWord.equals(keyword);
     }
 
     private void updateStepList(ArrayList<Step> steps){
