@@ -6,16 +6,11 @@ import pl.put.poznan.sqc.model.Step;
 import java.util.ArrayList;
 
 public class TextWithStepNumbersDownloader implements ScenarioVisitor {
+  
     @Override
-<<<<<<< Updated upstream
-    public void visitScenario(Scenario scenario) {
-
-=======
     public Integer visitScenario(Scenario scenario) {
         goThroughSteps(scenario.getSteps(), "");
-
         return 5;
->>>>>>> Stashed changes
     }
 
     private void goThroughSteps(ArrayList<Step> steps, String prefix){
@@ -33,5 +28,8 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
 
     private void writeLineToFile(String line){
         //write line
+
+    public Integer visitScenario(Scenario scenario) {
+        return 5;
     }
 }

@@ -4,7 +4,7 @@ import pl.put.poznan.sqc.model.Scenario;
 
 public class SimplifiedRequirementsObtainer implements ScenarioVisitor {
     @Override
-    public void visitScenario(Scenario scenario) {
-
+    public Integer visitScenario(Scenario scenario) {
+        return 5;
     }
 }
