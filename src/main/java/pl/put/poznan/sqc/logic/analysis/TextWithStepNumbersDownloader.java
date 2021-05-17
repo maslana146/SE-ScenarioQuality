@@ -19,8 +19,6 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
             String line = prefix + currentIndex.toString() + step.getAction();
             writeLineToFile(line);
             if(step.getSteps() != null){
-                prefix = prefix + currentIndex.toString() + ".";
-                goThroughSteps(step.getSteps(), prefix);
                 String nextPrefix = prefix + currentIndex.toString() + ".";
                 goThroughSteps(step.getSteps(), nextPrefix);
             }
