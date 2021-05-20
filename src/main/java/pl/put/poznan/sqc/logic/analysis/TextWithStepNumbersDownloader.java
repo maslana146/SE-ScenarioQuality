@@ -19,17 +19,16 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
             String line = prefix + currentIndex.toString() + step.getAction();
             writeLineToFile(line);
             if(step.getSteps() != null){
-                prefix = prefix + currentIndex.toString() + ".";
-                goThroughSteps(step.getSteps(), prefix);
+                String nextPrefix = prefix + currentIndex.toString() + ".";
+                goThroughSteps(step.getSteps(), nextPrefix);
             }
             currentIndex++;
         }
     }
 
     private void writeLineToFile(String line){
-        //write line
-
-    public Integer visitScenario(Scenario scenario) {
-        return 5;
+        System.out.println(line);
     }
+
+
 }
