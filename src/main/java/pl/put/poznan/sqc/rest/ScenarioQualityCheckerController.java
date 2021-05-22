@@ -5,8 +5,11 @@ import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.sqc.logic.analysis.KeywordsCounter;
 import pl.put.poznan.sqc.logic.analysis.ScenarioVisitor;
 import pl.put.poznan.sqc.logic.analysis.StepsCounter;
+import pl.put.poznan.sqc.logic.analysis.TextWithStepNumbersDownloader;
 import pl.put.poznan.sqc.model.Scenario;
 import pl.put.poznan.sqc.model.Step;
+
+import java.util.ArrayList;
 
 
 @RestController
@@ -22,10 +25,16 @@ public class ScenarioQualityCheckerController {
     }
 
     @PostMapping(path="keywords")
-    public Integer keywordsCounterController(@RequestBody Scenario scenario) {
+    public Integer keywordsCounterController(@RequestBody Scenario scenario, ArrayList<String> keywords) {
         KeywordsCounter keywordsCounter = new KeywordsCounter();
-        return keywordsCounter.visitScenario(scenario);
+        return keywordsCounter.calculateStepsWithKeyword(scenario,keywords);
     }
+    @PostMapping(path="downloadScenario")
+    public Integer downloadScenarioController(@RequestBody Scenario scenario) {
+        TextWithStepNumbersDownloader TextWithStepNumbersDownloader = new TextWithStepNumbersDownloader();
+        return TextWithStepNumbersDownloader.visitScenario(scenario);
+    }
+
 
 
 //REST controllers example
