@@ -11,7 +11,7 @@ public class KeywordsCounter implements ScenarioVisitor<Integer> {
 
     private String keyword = new String("System"); // just for testing, i gust from desription it should be a list of Strings
     private Integer count;
-    private ArrayList<Step> stepList = new ArrayList<Step>();
+
 
     @Override
     public Integer visitScenario(Scenario scenario) {

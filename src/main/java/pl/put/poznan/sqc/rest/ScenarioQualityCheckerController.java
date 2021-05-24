@@ -24,7 +24,16 @@ public class ScenarioQualityCheckerController {
     @PostMapping(path="keywords")
     public Integer keywordsCounterController(@RequestBody Scenario scenario) {
         KeywordsCounter keywordsCounter = new KeywordsCounter();
+<<<<<<< Updated upstream
         return keywordsCounter.visitScenario(scenario);
+=======
+        return keywordsCounter.calculateStepsWithKeyword(scenario,keywords);
+    }
+    @PostMapping(path="downloadScenario")
+    public Boolean downloadScenarioController(@RequestBody Scenario scenario) {
+        TextWithStepNumbersDownloader TextWithStepNumbersDownloader = new TextWithStepNumbersDownloader();
+        return TextWithStepNumbersDownloader.visitScenario(scenario);
+>>>>>>> Stashed changes
     }
 
 

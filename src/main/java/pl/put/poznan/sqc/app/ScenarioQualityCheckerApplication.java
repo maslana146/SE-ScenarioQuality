@@ -31,6 +31,15 @@ public class ScenarioQualityCheckerApplication {
 //                }
 //            }
 //        }
+<<<<<<< Updated upstream
+=======
+        TextWithStepNumbersDownloader textWithStepNumbersDownloader = new TextWithStepNumbersDownloader();
+//        ArrayList<String> keywords = new ArrayList<>();
+//        keywords.add("System");
+//        keywords.add("IF:");
+        textWithStepNumbersDownloader.visitScenario(scenario);
+//        textWithStepNumbersDownloader.calculateStepsWithKeyword(scenario,keywords);
+>>>>>>> Stashed changes
 
 
         SpringApplication.run(ScenarioQualityCheckerApplication.class, args);

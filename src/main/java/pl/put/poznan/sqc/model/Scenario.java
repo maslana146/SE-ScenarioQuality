@@ -8,6 +8,10 @@ public class Scenario {
     private Header header;
     private ArrayList<Step> steps;
 
+    /**
+     *
+     * @param v
+     */
     public void accept(ScenarioVisitor v) {
         v.visitScenario(this);
     }
