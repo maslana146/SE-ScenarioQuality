@@ -1,5 +1,6 @@
 package pl.put.poznan.sqc.logic.analysis;
 
+import pl.put.poznan.sqc.logic.ScenarioObjectBuilder;
 import pl.put.poznan.sqc.model.Scenario;
 import pl.put.poznan.sqc.model.Step;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class SimplifiedRequirementsObtainer implements ScenarioVisitor {
     }
 
     @Override
-    public Scenario visitScenario(Scenario scenario) {
+    public String visitScenario(Scenario scenario) {
         this.getStepsLevel(scenario);
 
         Scenario scenario1 = new Scenario();
@@ -22,7 +23,8 @@ public class SimplifiedRequirementsObtainer implements ScenarioVisitor {
         scenario1.setHeader(scenario.getHeader());
         scenario1.setSteps(this.steps);
 
-        return scenario1;
+        return ScenarioObjectBuilder.scenarioToJson(scenario1);
+        //return scenario1;
 
     }
 

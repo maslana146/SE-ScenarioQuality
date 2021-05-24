@@ -11,10 +11,10 @@ public class StepsWithoutActorFinder implements ScenarioVisitor {
     private ArrayList<Step> steps = new ArrayList<Step>();
 
     @Override
-    public ArrayList<Step> visitScenario(Scenario scenario) {
+    public String visitScenario(Scenario scenario) {
         this.stepsWithoutActor(scenario, scenario.getHeader());
 
-        return this.steps;
+        return this.steps.toString();
     }
 
     public ArrayList<Step> stepsWithoutActor(Scenario scenario, Header header){
