@@ -3,11 +3,9 @@ package pl.put.poznan.sqc.logic.analysis;
 import pl.put.poznan.sqc.model.Scenario;
 import pl.put.poznan.sqc.model.Step;
 
-<<<<<<< Updated upstream
-=======
 import java.io.FileWriter;
 import java.io.IOException;
->>>>>>> Stashed changes
+
 import java.util.ArrayList;
 
 /**
@@ -24,14 +22,6 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
      * @return              true, if downloading end with success, false otherwise
      */
     @Override
-<<<<<<< Updated upstream
-    public Integer visitScenario(Scenario scenario) {
-        goThroughSteps(scenario.getSteps(), "");
-        return 5;
-    }
-
-    private void goThroughSteps(ArrayList<Step> steps, String prefix){
-=======
     public Boolean visitScenario(Scenario scenario) {
         try {
             goThroughSteps(scenario.getSteps());
@@ -67,26 +57,19 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
      * @throws IOException      arbitrary IOException
      */
     private void writeLineToFile(ArrayList<Step> steps, String prefix, FileWriter fileWriter) throws IOException {
->>>>>>> Stashed changes
         Integer currentIndex = 1;
-        for(Step step: steps){
-<<<<<<< Updated upstream
-            String line = prefix + currentIndex.toString() + step.getAction();
-            writeLineToFile(line);
-=======
+
+        for(Step step: steps){        
             String line = prefix + currentIndex +  ". " + step.getAction() + "\n";
             fileWriter.write(line);
->>>>>>> Stashed changes
+
             if(step.getSteps() != null){
-                String nextPrefix = prefix + currentIndex.toString() + ".";
-                goThroughSteps(step.getSteps(), nextPrefix);
+                String nextPrefix = prefix + currentIndex + ".";
+                writeLineToFile(step.getSteps(), nextPrefix,fileWriter);
             }
             currentIndex++;
         }
-    }
-
-    private void writeLineToFile(String line){
-        System.out.println(line);
+        return;
     }
 
 

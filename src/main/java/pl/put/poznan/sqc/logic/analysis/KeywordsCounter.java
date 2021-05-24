@@ -3,8 +3,9 @@ package pl.put.poznan.sqc.logic.analysis;
 import pl.put.poznan.sqc.model.Scenario;
 import pl.put.poznan.sqc.model.Step;
 
-import javax.swing.text.StyledEditorKit;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class KeywordsCounter implements ScenarioVisitor<Integer> {
@@ -16,39 +17,35 @@ public class KeywordsCounter implements ScenarioVisitor<Integer> {
     @Override
     public Integer visitScenario(Scenario scenario) {
         count = 0;
-        if(scenario.getSteps().size() > 0) {
-            updateStepList(scenario.getSteps());
-            calculateStepsWithKeyword(scenario);
+        if (scenario.getSteps().size() > 0) {
+//            updateStepList(scenario.getSteps());
+//            calculateStepsWithKeyword(scenario);
         }
         return count;
     }
 
-    public Integer getCount() { return count; }
-
-    private void calculateStepsWithKeyword(Scenario scenario){
-        goThroughSteps();
+    public Integer calculateStepsWithKeyword(Scenario scenario, ArrayList<String> keywords) {
+        count = 0;
+        List<String> keywordsLowercase = keywords.stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+        goThroughSteps(scenario.getSteps(), keywordsLowercase);
+        System.out.println(count);
+        return count;
     }
 
-    private void goThroughSteps() {
-        for(Step currentStep: stepList){
-            if (checkStep(currentStep)) {
-                count += 1;
+    private void goThroughSteps(ArrayList<Step> steps, List<String> keywords) {
+        for (Step step : steps) {
+            String firstWord = step.getAction().split(" ")[0];
+
+            if (keywords.contains(firstWord.toLowerCase())) {
+                count++;
+            }
+            if (step.getSteps() != null) {
+                goThroughSteps(step.getSteps(), keywords);
             }
         }
-    }
-
-    private Boolean checkStep(Step step){
-        String firstWord = step.getAction().split(" ", 2)[0];
-        return firstWord.equals(keyword);
-    }
-
-    private void updateStepList(ArrayList<Step> steps){
-        for (Step step: steps){
-            stepList.add(step);
-            if(step.getSteps()!=null){
-                updateStepList(step.getSteps());
-            }
-        }
+        return;
 
     }
 }

@@ -1,6 +1,8 @@
 package pl.put.poznan.sqc.logic.analysis;
 
 import pl.put.poznan.sqc.model.Scenario;
+import pl.put.poznan.sqc.model.Step;
+import java.util.ArrayList;
 
 /**
  * Class responsible for creating new scenario which is simplified version of other scenario. Simplifying relies on
@@ -10,9 +12,6 @@ import pl.put.poznan.sqc.model.Scenario;
  * @since       v1.0-alpha
  */
 public class SimplifiedRequirementsObtainer implements ScenarioVisitor {
-<<<<<<< Updated upstream
-=======
-
     /**
      * Keeping track of steps which are below some 'level'
      */
@@ -29,20 +28,23 @@ public class SimplifiedRequirementsObtainer implements ScenarioVisitor {
     public SimplifiedRequirementsObtainer(int maxLevel){
         this.maxLevel = maxLevel;
     }
-
     /**
      * Main function which create simplified scenario from original scenario, by cutting all sub-steps above some level
      * @param scenario      scenario which will be simplified
      * @return              simplified scenario
      */
->>>>>>> Stashed changes
     @Override
-    public Integer visitScenario(Scenario scenario) {
-        return 5;
-    }
-<<<<<<< Updated upstream
-=======
+    public Scenario visitScenario(Scenario scenario) {
+        this.getStepsLevel(scenario);
 
+        Scenario scenario1 = new Scenario();
+
+        scenario1.setHeader(scenario.getHeader());
+        scenario1.setSteps(this.steps);
+
+        return scenario1;
+
+    }
     /**
      * Function, which return steps up to some level which is in {@link #maxLevel}
      * If maxLevel is equal 0, then no scenario will be returned.
@@ -76,6 +78,4 @@ public class SimplifiedRequirementsObtainer implements ScenarioVisitor {
             }
         }
     }
-
->>>>>>> Stashed changes
 }
