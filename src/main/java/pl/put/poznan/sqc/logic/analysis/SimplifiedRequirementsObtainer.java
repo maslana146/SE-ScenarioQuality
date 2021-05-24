@@ -24,7 +24,7 @@ public class SimplifiedRequirementsObtainer implements ScenarioVisitor {
         scenario1.setSteps(this.steps);
 
         return ScenarioObjectBuilder.scenarioToJson(scenario1);
-        //return scenario1;
+
 
     }
 

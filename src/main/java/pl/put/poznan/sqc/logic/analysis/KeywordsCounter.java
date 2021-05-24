@@ -11,18 +11,19 @@ import java.util.stream.Collectors;
 
 public class KeywordsCounter implements ScenarioVisitor {
 
-    private String keyword = new String("System"); // just for testing, i gust from desription it should be a list of Strings
+    private ArrayList<String> keywords;
     private Integer count;
-    private ArrayList<Step> stepList = new ArrayList<Step>();
 
     @Override
     public String visitScenario(Scenario scenario) {
-        count = 0;
         if (scenario.getSteps().size() > 0) {
-//            updateStepList(scenario.getSteps());
-//            calculateStepsWithKeyword(scenario);
+            calculateStepsWithKeyword(scenario, this.keywords);
         }
-        return ScenarioObjectBuilder.answerToJson("keywords",count);
+        return ScenarioObjectBuilder.answerToJson("keywords", count);
+    }
+
+    public KeywordsCounter(ArrayList<String> keywords) {
+        this.keywords = keywords;
     }
 
     public Integer calculateStepsWithKeyword(Scenario scenario, ArrayList<String> keywords) {
