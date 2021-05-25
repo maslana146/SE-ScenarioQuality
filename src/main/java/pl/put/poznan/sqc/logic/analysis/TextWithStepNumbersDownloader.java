@@ -24,7 +24,7 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
     @Override
     public String visitScenario(Scenario scenario) {
         try {
-            goThroughSteps(scenario.getSteps(), "");
+            goThroughSteps(scenario.getSteps());
         } catch (IOException e) {
             e.printStackTrace();
         }
