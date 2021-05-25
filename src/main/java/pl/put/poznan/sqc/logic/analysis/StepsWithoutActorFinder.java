@@ -1,5 +1,6 @@
 package pl.put.poznan.sqc.logic.analysis;
 
+import pl.put.poznan.sqc.logic.ScenarioObjectBuilder;
 import pl.put.poznan.sqc.model.Scenario;
 import pl.put.poznan.sqc.model.Step;
 import pl.put.poznan.sqc.model.Header;
@@ -14,7 +15,11 @@ public class StepsWithoutActorFinder implements ScenarioVisitor {
     public String visitScenario(Scenario scenario) {
         this.stepsWithoutActor(scenario, scenario.getHeader());
 
-        return this.steps.toString();
+        ArrayList<String>actions = new ArrayList<String>();
+        for(Step step: this.steps) {
+            actions.add(step.getAction());
+        }
+        return ScenarioObjectBuilder.answerToJson("steps",actions.toString());
     }
 
     public ArrayList<Step> stepsWithoutActor(Scenario scenario, Header header){
