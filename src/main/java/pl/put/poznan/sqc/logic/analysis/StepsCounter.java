@@ -1,9 +1,10 @@
 package pl.put.poznan.sqc.logic.analysis;
 
+import pl.put.poznan.sqc.logic.ScenarioObjectBuilder;
 import pl.put.poznan.sqc.model.Scenario;
 import pl.put.poznan.sqc.model.Step;
 
-public class StepsCounter implements ScenarioVisitor<Integer> {
+public class StepsCounter implements ScenarioVisitor {
 
     int numOfSteps = 0;
 
@@ -15,11 +16,11 @@ public class StepsCounter implements ScenarioVisitor<Integer> {
         }
     }
     @Override
-    public Integer visitScenario(Scenario scenario) {
+    public String visitScenario(Scenario scenario) {
         if (scenario.getSteps() != null)
         for (Step step: scenario.getSteps()) {
             diveIntoStep(step);
         }
-        return numOfSteps;
+        return ScenarioObjectBuilder.answerToJson("steps",numOfSteps);
     }
 }

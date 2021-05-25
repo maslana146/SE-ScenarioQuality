@@ -11,13 +11,13 @@ import java.util.ArrayList;
 public class TextWithStepNumbersDownloader implements ScenarioVisitor {
   
     @Override
-    public Integer visitScenario(Scenario scenario) {
+    public String visitScenario(Scenario scenario) {
         try {
             goThroughSteps(scenario.getSteps(), "");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return 200;
+        return "200";
     }
 
     private void goThroughSteps(ArrayList<Step> steps, String prefix) throws IOException {
