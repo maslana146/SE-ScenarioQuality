@@ -1,5 +1,6 @@
 package pl.put.poznan.sqc.logic.analysis;
 
+import pl.put.poznan.sqc.logic.ScenarioObjectBuilder;
 import pl.put.poznan.sqc.model.Scenario;
 import pl.put.poznan.sqc.model.Step;
 
@@ -8,20 +9,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class KeywordsCounter implements ScenarioVisitor<Integer> {
+public class KeywordsCounter implements ScenarioVisitor {
 
-    private String keyword = new String("System"); // just for testing, i gust from desription it should be a list of Strings
+    private ArrayList<String> keywords;
     private Integer count;
 
-
     @Override
-    public Integer visitScenario(Scenario scenario) {
-        count = 0;
+    public String visitScenario(Scenario scenario) {
         if (scenario.getSteps().size() > 0) {
-//            updateStepList(scenario.getSteps());
-//            calculateStepsWithKeyword(scenario);
+            calculateStepsWithKeyword(scenario, this.keywords);
         }
-        return count;
+        return ScenarioObjectBuilder.answerToJson("keywords", count);
+    }
+
+    public KeywordsCounter(ArrayList<String> keywords) {
+        this.keywords = keywords;
     }
 
     public Integer calculateStepsWithKeyword(Scenario scenario, ArrayList<String> keywords) {

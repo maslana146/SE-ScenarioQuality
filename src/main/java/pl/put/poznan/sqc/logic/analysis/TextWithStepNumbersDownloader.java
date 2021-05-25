@@ -22,15 +22,13 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
      * @return              true, if downloading end with success, false otherwise
      */
     @Override
-    public Boolean visitScenario(Scenario scenario) {
+    public String visitScenario(Scenario scenario) {
         try {
-            goThroughSteps(scenario.getSteps());
-            return true;
+            goThroughSteps(scenario.getSteps(), "");
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
-
+        return "200";
     }
 
     /**

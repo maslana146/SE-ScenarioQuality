@@ -5,16 +5,9 @@ import pl.put.poznan.sqc.logic.analysis.ScenarioVisitor;
 import java.util.ArrayList;
 
 public class Scenario {
+
     private Header header;
     private ArrayList<Step> steps;
-
-    /**
-     *
-     * @param v
-     */
-    public void accept(ScenarioVisitor v) {
-        v.visitScenario(this);
-    }
     
     public Header getHeader() {
         return header;
@@ -30,6 +23,10 @@ public class Scenario {
 
     public void setSteps(ArrayList<Step> steps) {
         this.steps = steps;
+    }
+
+    public String accept(ScenarioVisitor v) {
+        return v.visitScenario(this);
     }
 
     @Override
