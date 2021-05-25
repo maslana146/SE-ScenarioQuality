@@ -19,6 +19,7 @@ public class StepsWithoutActorFinder implements ScenarioVisitor {
 
     public ArrayList<Step> stepsWithoutActor(Scenario scenario, Header header){
         ArrayList<String> actors = header.getActors();
+        actors.add(header.getSystemActor());
 
         if (scenario.getSteps() != null)
         for (Step step: scenario.getSteps()){
