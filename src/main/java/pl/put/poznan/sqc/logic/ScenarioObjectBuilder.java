@@ -17,7 +17,7 @@ public class ScenarioObjectBuilder {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         String jsonStr = null;
         try {
-            jsonStr = mapper..writerWithDefaultPrettyPrinter().writeValueAsString(scenario);
+            jsonStr = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(scenario);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
