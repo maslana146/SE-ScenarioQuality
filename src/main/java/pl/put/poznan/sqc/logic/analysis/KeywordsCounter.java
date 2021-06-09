@@ -32,7 +32,6 @@ public class KeywordsCounter implements ScenarioVisitor {
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
         goThroughSteps(scenario.getSteps(), keywordsLowercase);
-        System.out.println(count);
         return count;
     }
 
