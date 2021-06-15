@@ -49,38 +49,33 @@ public class ScenarioQualityCheckerController {
     }
 
 
-
     /////////////////////////Testing purposes
 
 
-    @PostMapping(path="steps")
     public String stepsCounterController(@RequestBody Scenario scenario, @RequestParam StepsCounter stepsCounter) {
 
         logger.info("Count steps request message");
         return scenario.accept(stepsCounter);
     }
 
-    @PostMapping(path="keywords")
     public String keywordsCounterController(@RequestBody Scenario scenario, @RequestParam KeywordsCounter keywordsCounter) {
 
         logger.info("Steps starting with keyword request message");
         return scenario.accept(keywordsCounter);
     }
-    @PostMapping(path="download")
+
     public String textWithStepNumbersDownloaderController(@RequestBody Scenario scenario, @RequestParam TextWithStepNumbersDownloader textWithStepNumbersDownloader) {
 
         logger.info("Download scenario request message");
         return scenario.accept(textWithStepNumbersDownloader);
     }
 
-    @PostMapping(path="simplified")
     public String simplifiedRequirementsObtainerController(@RequestBody Scenario scenario, @RequestParam SimplifiedRequirementsObtainer simplifiedRequirementsObtainer) {
 
         logger.info("Level of steps request message");
         return scenario.accept(simplifiedRequirementsObtainer);
     }
 
-    @PostMapping(path="no-actor")
     public String stepsWithoutActorFinderController(@RequestBody Scenario scenario, @RequestParam StepsWithoutActorFinder stepsWithoutActorFinder) {
         logger.info("Check steps without actors request message");
         return scenario.accept(stepsWithoutActorFinder);
