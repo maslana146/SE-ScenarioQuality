@@ -1,85 +1,91 @@
-package pl.put.poznan.sqc.test;
-
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hamcrest.CoreMatchers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestComponent;
-import org.testng.annotations.Test;
-import pl.put.poznan.sqc.logic.ScenarioObjectBuilder;
+package pl.put.poznan.sqc.rest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.sqc.logic.analysis.*;
 import pl.put.poznan.sqc.model.Scenario;
 
-import javax.swing.plaf.basic.BasicLabelUI;
-
-import static org.junit.Assert.*;
-
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
-@SpringBootTest
-public class logicAnalysisTest {
-    Scenario scenario = getScenario();
-    ArrayList keywords = new ArrayList<>(Arrays.asList("Librarian", "System"));
+@RestController
+@RequestMapping("/api")
+public class ScenarioQualityCheckerController {
 
-    @Autowired
-    StepsCounter stepsCounter = new StepsCounter();
-    KeywordsCounter keywordsCounter = new KeywordsCounter(keywords);
-    StepsWithoutActorFinder stepsWithoutActorFinder = new StepsWithoutActorFinder();
-    TextWithStepNumbersDownloader textWithStepNumbersDownloader = new TextWithStepNumbersDownloader();
-    ScenarioObjectBuilder scenarioObjectBuilder = new ScenarioObjectBuilder();
+    private static final Logger logger = LoggerFactory.getLogger(ScenarioQualityCheckerController.class);
 
-
-    public logicAnalysisTest() throws IOException {
+    @PostMapping(path="steps")
+    public String stepsCounterController(@RequestBody Scenario scenario) {
+        StepsCounter stepsCounter = new StepsCounter();
+        logger.info("Count steps request message");
+        return scenario.accept(stepsCounter);
     }
 
-    private Scenario getScenario() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        Scenario scenario = mapper.readValue(new File("scenario_example.json"), Scenario.class);
-        return scenario;
+    @PostMapping(path="keywords")
+    public String keywordsCounterController(@RequestParam(name = "keywords") ArrayList<String> keywords,@RequestBody Scenario scenario) {
+        KeywordsCounter keywordsCounter = new KeywordsCounter(keywords);
+        logger.info("Steps starting with keyword request message");
+        return scenario.accept(keywordsCounter);
+    }
+    @PostMapping(path="download")
+    public String textWithStepNumbersDownloaderController(@RequestBody Scenario scenario) {
+        TextWithStepNumbersDownloader textWithStepNumbersDownloader = new TextWithStepNumbersDownloader();
+        logger.info("Download scenario request message");
+        return scenario.accept(textWithStepNumbersDownloader);
     }
 
-    @Test
-    public void stepsCounterTest() throws IOException {
-        String result = stepsCounter.visitScenario(scenario);
-        assertThat("stepsCounterTest - FAILED   Result returns wrong answer.", result, CoreMatchers.containsString("\"steps\" : 13"));
+    @PostMapping(path="simplified")
+    public String simplifiedRequirementsObtainerController(@RequestParam(name = "level") Integer level,@RequestBody Scenario scenario) {
+        SimplifiedRequirementsObtainer simplifiedRequirementsObtainer = new SimplifiedRequirementsObtainer(level);
+        logger.info("Level of steps request message");
+        return scenario.accept(simplifiedRequirementsObtainer);
     }
 
-    @Test
-    public void stepsWithoutActorTest() {
-        String result = stepsWithoutActorFinder.visitScenario(scenario);
-        assertThat("stepsWithoutActorTest - FAILED   Result returns wrong answer.", result, CoreMatchers.containsString("\"steps\" : \"[A form is displayed, FOR EACH: instance:]\""));
+    @PostMapping(path="no-actor")
+    public String stepsWithoutActorFinderController(@RequestBody Scenario scenario) {
+        StepsWithoutActorFinder stepsWithoutActorFinder = new StepsWithoutActorFinder();
+        logger.info("Check steps without actors request message");
+        return scenario.accept(stepsWithoutActorFinder);
     }
 
-    @Test
-    public void keywordsCounterTest() {
-        String result = keywordsCounter.visitScenario(scenario);
-        assertThat("keywordsCounterTest - FAILED   Result returns wrong answer.", result, CoreMatchers.containsString("\"keywords\" : 10"));
+
+
+    /////////////////////////Testing purposes
+
+
+    @PostMapping(path="steps")
+    public String stepsCounterController(@RequestBody Scenario scenario, @RequestParam StepsCounter stepsCounter) {
+
+        logger.info("Count steps request message");
+        return scenario.accept(stepsCounter);
     }
-    @Test
-    public void textWithStepNumbersDownloaderTest() {
-        String result = textWithStepNumbersDownloader.visitScenario(scenario);
-        assertThat("textWithStepNumbersDownloaderTest - FAILED   Result returns wrong answer.", result, CoreMatchers.containsString("200"));
+
+    @PostMapping(path="keywords")
+    public String keywordsCounterController(@RequestBody Scenario scenario, @RequestParam KeywordsCounter keywordsCounter) {
+
+        logger.info("Steps starting with keyword request message");
+        return scenario.accept(keywordsCounter);
     }
-    @Test
-    public void calculateStepsWithKeywordTest() {
-        Integer result = keywordsCounter.calculateStepsWithKeyword(scenario,keywords);
-        assertEquals(10, (int) result);
+    @PostMapping(path="download")
+    public String textWithStepNumbersDownloaderController(@RequestBody Scenario scenario, @RequestParam TextWithStepNumbersDownloader textWithStepNumbersDownloader) {
+
+        logger.info("Download scenario request message");
+        return scenario.accept(textWithStepNumbersDownloader);
     }
-    @Test
-    public void answerToJsonTest() {
-        String result = scenarioObjectBuilder.answerToJson("test","test");
-        assertThat("answerToJsonTest - FAILED   Result returns wrong answer.", result, CoreMatchers.containsString("\"test\" : \"test\""));
+
+    @PostMapping(path="simplified")
+    public String simplifiedRequirementsObtainerController(@RequestBody Scenario scenario, @RequestParam SimplifiedRequirementsObtainer simplifiedRequirementsObtainer) {
+
+        logger.info("Level of steps request message");
+        return scenario.accept(simplifiedRequirementsObtainer);
     }
-    @Test
-    public void answerToJsonIntTest() {
-        String result = scenarioObjectBuilder.answerToJson("test",100);
-        assertThat("answerToJsonIntTest - FAILED   Result returns wrong answer.", result, CoreMatchers.containsString("\"test\" : 100"));
+
+    @PostMapping(path="no-actor")
+    public String stepsWithoutActorFinderController(@RequestBody Scenario scenario, @RequestParam StepsWithoutActorFinder stepsWithoutActorFinder) {
+        logger.info("Check steps without actors request message");
+        return scenario.accept(stepsWithoutActorFinder);
     }
+
+
+
 }
