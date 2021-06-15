@@ -150,5 +150,22 @@ public class ControllerTest {
         String result = controller.simplifiedRequirementsObtainerController(scenario, simplifiedRequirementsObtainer);
         assertEquals(result, str);
     }
+    
+    @Test
+    public void SimplifiedRequirementsObtainerTest1() throws IOException{
+        SimplifiedRequirementsObtainer simplifiedRequirementsObtainer = new SimplifiedRequirementsObtainer(1);
+        Scenario scenario = mock(Scenario.class);
+
+        String str = getScenario().accept(simplifiedRequirementsObtainer);
+        when(scenario.accept(simplifiedRequirementsObtainer)).thenReturn(str);
+
+        String result = controller.simplifiedRequirementsObtainerController(scenario, simplifiedRequirementsObtainer);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Scenario sc = objectMapper.readValue(result, Scenario.class);
+
+        assertTrue(sc instanceof Scenario);
+
+    }
 
 }
