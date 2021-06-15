@@ -21,7 +21,7 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
     /**
      * Main function of this class
      * @param scenario      scenario, which will be changed
-     * @return              true, if downloading end with success, false otherwise
+     * @return              file with output
      */
     @Override
     public String visitScenario(Scenario scenario) {

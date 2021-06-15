@@ -2,9 +2,21 @@ package pl.put.poznan.sqc.model;
 
 import java.util.ArrayList;
 
+/**
+ * Class which create header object, which is at the top of scenario
+ */
 public class Header {
+    /**
+     * title of header
+     */
     private String title;
+    /**
+     * list of actors in given scenario
+     */
     private ArrayList<String> actors;
+    /**
+     * name of the main actor
+     */
     private String systemActor;
 
     public String getTitle() {
@@ -31,6 +43,10 @@ public class Header {
         this.systemActor = systemActor;
     }
 
+    /**
+     * overwriting of toString method
+     * @return string in form "Header{title="sometitle", actors="[actor1, actor2, ...]", systemActor="systemActor"}
+     */
     @Override
     public String toString() {
         return "Header{" +
