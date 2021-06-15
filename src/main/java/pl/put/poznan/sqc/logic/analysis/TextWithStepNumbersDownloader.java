@@ -6,6 +6,8 @@ import pl.put.poznan.sqc.model.Step;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -28,7 +30,9 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "200";
+
+        String fileString = readFileAsString("scenarioFile.txt");
+        return fileString;
     }
 
     /**
@@ -70,5 +74,15 @@ public class TextWithStepNumbersDownloader implements ScenarioVisitor {
         return;
     }
 
+    public static String readFileAsString(String fileName) {
+        String text = "";
+        try {
+            text = new String(Files.readAllBytes(Paths.get(fileName)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return text;
+    }
 
 }
