@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScenarioQualityChecker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+    <div id="all">
+        <div id="inp_container" class="container">
+            <textarea type="text" id="inp" /></textarea>
+            <p>
+                <button id="default">Default</button>
+                <button id="clear">Clear</button>
+            </p>
+        </div>
+        <div id="out_containter" class="container">
+            <button id="steps_counter">Number of steps</button>
+            <button id="simplified_requirements_obtainer">Simplify scenario</button>
+            <input type="text" value="1">
+            <button id="keywords_counter">Count keywords</button>
+            <input type="text" value="System">
+            <button id="steps_without_actor">Steps without actor</button>
+            <button id="text_with_step_numbers_downloader">Download scenario with numbers</button>
+            <textarea type="text" id="out" /></textarea>
+        </div>
+    </div>
+</main>
+<script src="controller.js"></script>
+</body>
+</html>
